@@ -4,6 +4,8 @@ Description=Mapit Server
 [Service]
 ExecStart=/usr/bin/docker run -p 8020:80 -i -t nordgedanken/mapit-germany-docker
 ExecStop=/usr/bin/docker stop $(docker ps -q --filter ancestor=nordgedanken/mapit-germany-docker)
+User=daemon
+Group=docker
 
 [Install]
 WantedBy=multi-user.target
