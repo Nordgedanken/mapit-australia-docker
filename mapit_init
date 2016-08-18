@@ -9,7 +9,7 @@
 ### END INIT INFO
 
 SCRIPT=docker run -p 8020:80 -i -t nordgedanken/mapit-germany-docker
-RUNAS=nobody
+RUNAS=daemon
 
 PIDFILE=/var/run/mapit.pid
 LOGFILE=/var/log/mapit.log
