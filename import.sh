@@ -11,4 +11,4 @@ echo "INSERT INTO mapit_type (code, description) VALUES ('$CODE', '$DESCRIPTION'
 cd /data; unzip $NAME.zip; rm $NAME.zip
 # TODO do proper projection conversion using -s_srs "EPSG:28350" -t_srs "EPSG:4326"
 ogr2ogr -f "KML" -dsco NameField=$NAME_FIELD /data/$NAME.kml /data/$NAME.shp
-su -l -c "/var/www/mapit/mapit/manage.py mapit_import --country_code AU --area_type_code $CODE --name_type_code $CODE --generation_id 1 --commit /data/$NAME.kml" mapit
+su -l -c "/var/www/mapit/mapit/manage.py mapit_import --country_code DE --area_type_code $CODE --name_type_code $CODE --generation_id 1 --commit /data/$NAME.kml" mapit
