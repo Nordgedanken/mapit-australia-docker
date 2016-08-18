@@ -8,7 +8,7 @@ automatically available from the [Docker Hub](https://registry.hub.docker.com/u/
 
 1. simple way: run script from this git: https://gist.github.com/MTRNord/824bc53f426a022b2e8e74684fc51837
 2. Harder Way: 
-3. 
+
 First, you'll need to install [Docker](https://docs.docker.com/) if you don't already have it.
 
 Then,
