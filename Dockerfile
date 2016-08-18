@@ -17,17 +17,10 @@ RUN chmod +x /import.sh
 ADD import2.sh /import2.sh
 RUN chmod +x /import2.sh
 
-RUN /import2.sh POA_2011_AUST POA 'Postal Area' POA_CODE
-
 # All following area id's should start at 10000
 RUN service postgresql start; echo "ALTER SEQUENCE mapit_area_id_seq RESTART WITH 10000;" | su -l -c "psql mapit" mapit
 
-RUN /import.sh LGA_2011_AUST LGA 'Local Government Area' LGA_NAME11
-RUN /import.sh SED_2011_AUST SED 'State Electoral Division' SED_NAME
-RUN /import.sh COM20111216_ELB_region CED 'Commonwealth Electoral Division' ELECT_DIV
-#RUN /import.sh CED_2011_AUST CED 'Commonwealth Electoral Division' CED_NAME
-RUN /import.sh STE11aAust STE 'State and Territories' STATE_NAME
-RUN /import.sh SSC_2011_AUST SSC 'Suburb' SSC_NAME
+RUN /import.sh DEU_adm_shp LGA 'Local Government Area' LGA_NAME11
 
 ADD copyright.html /var/www/mapit/mapit/mapit/templates/mapit/copyright.html
 ADD country.html /var/www/mapit/mapit/mapit/templates/mapit/country.html
