@@ -1,21 +1,21 @@
-## Dockerized Mapit with Australian data pre-loaded
-### This is a work in progress and not quite ready to be used
+## Dockerized Mapit with German data pre-loaded
+### This is hopefully working
 
 ### How to run this
 
 You actually don't need this repository to try it out. The docker image built from this is
-automatically available from the [Docker Hub](https://registry.hub.docker.com/u/openaustralia/mapit-australia/).
+automatically available from the [Docker Hub](https://registry.hub.docker.com/u/nordgedanken/mapit-germany-docker/).
 
 First, you'll need to install [Docker](https://docs.docker.com/) if you don't already have it.
 
 Then,
 ```
-docker pull openaustralia/mapit-australia
-docker run -p 8020:80 -d openaustralia/mapit-australia
+docker pull nordgedanken/mapit-germany-docker
+docker run -p 8020:80 -d nordgedanken/mapit-germany-docker
 ```
 
 Point your web browser to [http://localhost:8020](http://localhost:8020) and you should
-MapIt Australia.
+MapIt Germany.
 
 ### Some example queries
 
