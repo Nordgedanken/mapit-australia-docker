@@ -1,4 +1,4 @@
-FROM openaustralia/mapit
+FROM nordgedanken/mapit-docker
 MAINTAINER Marcel Radzio <info@nordgedanken.de>
 
 
