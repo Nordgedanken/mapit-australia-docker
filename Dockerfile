@@ -6,8 +6,8 @@ ADD http://biogeo.ucdavis.edu/data/gadm2.8/shp/DEU_adm_shp.zip data/DEU_adm_shp.
 # The first way is great during development as the step will get cached.
 # The second way is great for building on Docker Hub
 
-RUN service postgresql restart
-RUN service postgresql status
+RUN cat /etc/init.d/mapit
+RUN /etc/init.d/mapit restart
 RUN echo "INSERT INTO mapit_country (code, name) VALUES ('DEU', 'Germany');" | su -l -c "psql mapit" mapit
 
 RUN service postgresql start; su -l -c "/var/www/mapit/mapit/manage.py mapit_generation_create --desc='Initial import' --commit" mapit
