@@ -18,4 +18,5 @@ cd /data; unzip $NAME.zip; rm $NAME.zip
 echo "convert"
 ogr2ogr -f "KML" -dsco NameField=$NAME_FIELD /data/$FILE_NAME.kml /data/$FILE_NAME.shp
 echo "insert"
+cat /var/www/mapit/mapit/manage.py
 su -l -c ". /var/www/mapit/virtualenv-mapit/bin/activate; /var/www/mapit/mapit/manage.py mapit_import --country_code DEU --area_type_code $CODE --name_type_code $NAME_CODE --generation_id 1 --commit /data/$FILE_NAME.kml" mapit
