@@ -6,7 +6,7 @@ DESCRIPTION=$3
 NAME_FIELD=$4
 FILE_NAME=$5
 
-service postgresql start
+service postgresql restart && sleep 20
 echo "INSERT INTO mapit_type (code, description) VALUES ('$CODE', '$DESCRIPTION'); INSERT INTO mapit_nametype (code, description) VALUES ('$CODE', '$DESCRIPTION');" | su -l -c "psql mapit" mapit
 
 cd /data; unzip $NAME.zip; rm $NAME.zip
