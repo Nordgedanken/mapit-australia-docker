@@ -9,6 +9,7 @@ ADD http://biogeo.ucdavis.edu/data/gadm2.8/shp/DEU_adm_shp.zip data/DEU_adm_shp.
 
 RUN service postgresql restart && sleep 20; echo "INSERT INTO mapit_country (code, name) VALUES ('DEU', 'Germany');" | su -l -c "psql mapit" mapit
 RUN which python
+RUN echo -e "$PYTHONPATH"
 RUN service postgresql restart && sleep 20; su -l -c "/var/www/mapit/mapit/manage.py mapit_generation_create --desc='Initial import' --commit" mapit
 RUN service postgresql restart && sleep 20; su -l -c "/var/www/mapit/mapit/manage.py mapit_generation_activate --commit" mapit
 
