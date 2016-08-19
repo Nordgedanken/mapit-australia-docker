@@ -6,7 +6,7 @@ ADD http://biogeo.ucdavis.edu/data/gadm2.8/shp/DEU_adm_shp.zip data/DEU_adm_shp.
 # The first way is great during development as the step will get cached.
 # The second way is great for building on Docker Hub
 
-RUN cat /etc/init.d/postgresql
+RUN ls -la /var/run/postgresql/
 RUN /etc/init.d/postgresql start
 RUN su -l -c "psql mapit" mapit
 RUN echo "INSERT INTO mapit_country (code, name) VALUES ('DEU', 'Germany');" | su -l -c "psql mapit" mapit
