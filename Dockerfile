@@ -8,9 +8,9 @@ ADD http://biogeo.ucdavis.edu/data/gadm2.8/shp/DEU_adm_shp.zip data/DEU_adm_shp.
 ENV PYTHONPATH=/usr/local/lib/python2.7/site-packages
 
 RUN ls -la /var/www/mapit
-RUN service postgresql restart && sleep 20; echo "INSERT INTO mapit_country (code, name) VALUES ('DEU', 'Germany');" | su -l -c "psql mapit" mapit
-RUN service postgresql restart && sleep 20; su -l -c ". /var/www/mapit/mapit/virtualenv-mapit/bin/activate && /var/www/mapit/mapit/manage.py mapit_generation_create --desc='Initial import' --commit" mapit
-RUN service postgresql restart && sleep 20; su -l -c ". /var/www/mapit/mapit/virtualenv-mapit/bin/activate && /var/www/mapit/mapit/manage.py mapit_generation_activate --commit" mapit
+RUN service postgresql restart && sleep 20; echo "INSERT INTO mapit_country (code, name) VALUES ('DEU', 'Germany');" | su -l -c ". /var/www/mapit/virtualenv-mapit/bin/activate && psql mapit" mapit
+RUN service postgresql restart && sleep 20; su -l -c ". /var/www/mapit/virtualenv-mapit/bin/activate && /var/www/mapit/mapit/manage.py mapit_generation_create --desc='Initial import' --commit" mapit
+RUN service postgresql restart && sleep 20; su -l -c ". /var/www/mapit/virtualenv-mapit/bin/activate && /var/www/mapit/mapit/manage.py mapit_generation_activate --commit" mapit
 
 ADD import.sh /import.sh
 RUN chmod +x /import.sh
@@ -19,7 +19,7 @@ ADD import2.sh /import2.sh
 RUN chmod +x /import2.sh
 
 # All following area id's should start at 10000
-RUN service postgresql restart && sleep 20; echo "ALTER SEQUENCE mapit_area_id_seq RESTART WITH 10000;" | su -l -c ". /var/www/mapit/mapit/virtualenv-mapit/bin/activate &&  psql mapit" mapit
+RUN service postgresql restart && sleep 20; echo "ALTER SEQUENCE mapit_area_id_seq RESTART WITH 10000;" | su -l -c ". /var/www/mapit/virtualenv-mapit/bin/activate &&  psql mapit" mapit
 
 RUN /import.sh DEU_adm_shp LGA 'Local Government Area' NAME_ENGLI DEU_adm0
 RUN /import.sh DEU_adm_shp LGA 'Local Government Area' NAME_0 DEU_adm1
