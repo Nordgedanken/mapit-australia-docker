@@ -15,9 +15,10 @@ echo "INSERT INTO mapit_type (code, description) VALUES ('$NAME_CODE', '$NAME_CO
 echo "unzip"
 cd /data; unzip $NAME.zip; rm $NAME.zip
 # TODO do proper projection conversion using -s_srs "EPSG:28350" -t_srs "EPSG:4326"
-echo "convert"
-ogr2ogr -f "KML" -dsco NameField=$NAME_FIELD /data/$FILE_NAME.kml /data/$FILE_NAME.shp
-echo "insert"
-file -bi /data/$FILE_NAME.shp
-file -bi /data/$FILE_NAME.kml
-su -l -c ". /var/www/mapit/virtualenv-mapit/bin/activate; /var/www/mapit/mapit/manage.py mapit_import --country_code DEU --area_type_code $CODE --name_type_code $NAME_CODE --generation_id 1 --commit /data/$FILE_NAME.kml" mapit
+#echo "convert"
+#ogr2ogr -f "KML" -dsco NameField=$NAME_FIELD /data/$FILE_NAME.kml /data/$FILE_NAME.shp
+#echo "insert"
+#file -bi /data/$FILE_NAME.shp
+#file -bi /data/$FILE_NAME.kml
+#su -l -c ". /var/www/mapit/virtualenv-mapit/bin/activate; /var/www/mapit/mapit/manage.py mapit_import --country_code DEU --area_type_code $CODE --name_type_code $NAME_CODE --generation_id 1 --commit /data/$FILE_NAME.kml" mapit
+su -l -c ". /var/www/mapit/virtualenv-mapit/bin/activate; manage.py mapit_import --generation_id 1 --area_type_code $CODE --name_type_code $NAME_CODE --country_code DEU --name_field $NAME_FIELD /data/$FILE_NAME.shp --commit" mapit
