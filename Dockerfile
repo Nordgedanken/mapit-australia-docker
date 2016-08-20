@@ -1,6 +1,7 @@
 FROM nordgedanken/mapit-docker
 MAINTAINER Marcel Radzio <info@nordgedanken.de>
 
+RUN python -c 'import sys; print(sys.version_info[:])'
 
 ADD http://biogeo.ucdavis.edu/data/gadm2.8/shp/DEU_adm_shp.zip data/DEU_adm_shp.zip
 # The first way is great during development as the step will get cached.
