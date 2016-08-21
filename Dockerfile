@@ -4,11 +4,8 @@ MAINTAINER Marcel Radzio <info@nordgedanken.de>
 ADD http://biogeo.ucdavis.edu/data/gadm2.8/shp/DEU_adm_shp.zip data/DEU_adm_shp.zip
 ADD http://media.nordgedanken.de/OSM/Germany.shp data/Germany.shp
 ADD https://www.aggdata.com/download_sample.php?file=de_postal_codes.csv data/de_postal_codes.csv
-# The first way is great during development as the step will get cached.
-# The second way is great for building on Docker Hub
 ENV PYTHONPATH=/usr/local/lib/python2.7/site-packages
 
-RUN ls -la /var/www/mapit
 RUN service postgresql restart && sleep 20; su -l -c ". /var/www/mapit/virtualenv-mapit/bin/activate && /var/www/mapit/mapit/manage.py loaddata global" mapit
 RUN service postgresql restart && sleep 20; echo "INSERT INTO mapit_country (code, name) VALUES ('DE', 'Germany');" | su -l -c ". /var/www/mapit/virtualenv-mapit/bin/activate && psql mapit" mapit
 RUN service postgresql restart && sleep 20; su -l -c ". /var/www/mapit/virtualenv-mapit/bin/activate && /var/www/mapit/mapit/manage.py mapit_generation_create --desc='Initial import' --commit" mapit
@@ -27,7 +24,7 @@ RUN ls -la data/de_postal_codes.csv
 ADD postalcodes.sh /postalcodes.sh
 RUN chmod +x /postalcodes.sh
 
-RUN /postalcodes.sh de_postal_codes 1 7 6
+#RUN /postalcodes.sh de_postal_codes 1 7 6
 
 # All following area id's should start at 10000
 #RUN service postgresql restart && sleep 20; echo "ALTER SEQUENCE mapit_area_id_seq RESTART WITH 10000;" | su -l -c ". /var/www/mapit/virtualenv-mapit/bin/activate &&  psql mapit" mapit
