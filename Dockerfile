@@ -21,7 +21,7 @@ RUN ls -la data/de_postal_codes.csv
 RUN chmod 755 data/de_postal_codes.csv
 RUN ls -la data/de_postal_codes.csv
 
-RUN sed '/,,,,,,,/d' data/de_postal_codes.csv
+RUN sed -i data/de_postal_codes.csv.bak '/,,,,,,,/d' data/de_postal_codes.csv
 
 ADD postalcodes.sh /postalcodes.sh
 RUN chmod +x /postalcodes.sh
