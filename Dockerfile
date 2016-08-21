@@ -29,7 +29,7 @@ RUN /import.sh DEU_adm_shp LGA 'Local Government Area' NAME_2 DEU_adm2 full 'Eng
 RUN /import.sh DEU_adm_shp LGA 'Local Government Area' NAME_3 DEU_adm3 full 'English Name'
 RUN /import.sh DEU_adm_shp LGA 'Local Government Area' NAME_4 DEU_adm4 full 'English Name'
 
-RUN /postalcodes.sh German-Zip-Codes 1 7 6
+RUN /postalcodes.sh de_postal_codes 1 7 6
 
 ADD copyright.html /var/www/mapit/mapit/mapit/templates/mapit/copyright.html
 ADD country.html /var/www/mapit/mapit/mapit/templates/mapit/country.html
