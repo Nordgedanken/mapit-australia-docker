@@ -17,6 +17,10 @@ RUN service postgresql restart && sleep 20; su -l -c ". /var/www/mapit/virtualen
 ADD import.sh /import.sh
 RUN chmod +x /import.sh
 
+RUN ls -la data/de_postal_codes.csv
+RUN chmod 755 data/de_postal_codes.csv
+RUN ls -la data/de_postal_codes.csv
+
 ADD postalcodes.sh /postalcodes.sh
 RUN chmod +x /postalcodes.sh
 
@@ -24,10 +28,10 @@ RUN chmod +x /postalcodes.sh
 RUN service postgresql restart && sleep 20; echo "ALTER SEQUENCE mapit_area_id_seq RESTART WITH 10000;" | su -l -c ". /var/www/mapit/virtualenv-mapit/bin/activate &&  psql mapit" mapit
 
 RUN /import.sh DEU_adm_shp CTR 'Local Government Area' NAME_ENGLI DEU_adm0 full 'English Name'
-RUN /import.sh DEU_adm_shp LGA 'Local Government Area' NAME_1 DEU_adm1 full 'English Name'
-RUN /import.sh DEU_adm_shp LGA 'Local Government Area' NAME_2 DEU_adm2 full 'English Name'
-RUN /import.sh DEU_adm_shp LGA 'Local Government Area' NAME_3 DEU_adm3 full 'English Name'
-RUN /import.sh DEU_adm_shp LGA 'Local Government Area' NAME_4 DEU_adm4 full 'English Name'
+RUN /import.sh DEU_adm_shp State 'Federal State' NAME_1 DEU_adm1 full 'English Name'
+RUN /import.sh DEU_adm_shp CTY 'County' NAME_2 DEU_adm2 full 'English Name'
+RUN /import.sh DEU_adm_shp MCP 'Municipality' NAME_3 DEU_adm3 full 'English Name'
+RUN /import.sh DEU_adm_shp TWN 'Town' NAME_4 DEU_adm4 full 'English Name'
 
 RUN /postalcodes.sh de_postal_codes 1 7 6
 
