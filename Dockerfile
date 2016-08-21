@@ -10,6 +10,7 @@ ADD https://www.aggdata.com/download_sample.php?file=de_postal_codes.csv data/de
 ENV PYTHONPATH=/usr/local/lib/python2.7/site-packages
 
 RUN ls -la /var/www/mapit
+RUN service postgresql restart && sleep 20; su -l -c ". /var/www/mapit/virtualenv-mapit/bin/activate && /var/www/mapit/mapit/manage.py loaddata global" mapit
 RUN service postgresql restart && sleep 20; echo "INSERT INTO mapit_country (code, name) VALUES ('DE', 'Germany');" | su -l -c ". /var/www/mapit/virtualenv-mapit/bin/activate && psql mapit" mapit
 RUN service postgresql restart && sleep 20; su -l -c ". /var/www/mapit/virtualenv-mapit/bin/activate && /var/www/mapit/mapit/manage.py mapit_generation_create --desc='Initial import' --commit" mapit
 RUN service postgresql restart && sleep 20; su -l -c ". /var/www/mapit/virtualenv-mapit/bin/activate && /var/www/mapit/mapit/manage.py mapit_generation_activate --commit" mapit
@@ -34,6 +35,8 @@ RUN /import.sh DEU_adm_shp State 'Federal State' NAME_1 DEU_adm1 full 'English N
 RUN /import.sh DEU_adm_shp CTY 'County' NAME_2 DEU_adm2 full 'English Name'
 RUN /import.sh DEU_adm_shp MCP 'Municipality' NAME_3 DEU_adm3 full 'English Name'
 RUN /import.sh DEU_adm_shp TWN 'Town' NAME_4 DEU_adm4 full 'English Name'
+
+RUN service postgresql restart && sleep 20; su -l -c ". /var/www/mapit/virtualenv-mapit/bin/activate && /var/www/mapit/mapit/manage.py mapit_generation_activate --commit" mapit
 
 ADD copyright.html /var/www/mapit/mapit/mapit/templates/mapit/copyright.html
 ADD country.html /var/www/mapit/mapit/mapit/templates/mapit/country.html
