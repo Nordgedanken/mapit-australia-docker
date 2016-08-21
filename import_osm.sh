@@ -2,10 +2,9 @@
 
 NAME=$1
 CODE=$2
-DESCRIPTION=$3
-NAME_FIELD=$4
-FILE_NAME=$5
-CODE_FIELD=$6
+NAME_FIELD=$3
+FILE_NAME=$4
+CODE_FIELD=$5
 
 service postgresql restart && sleep 20
 #echo "INSERT INTO mapit_type (code, description) VALUES ('$CODE', '$DESCRIPTION'); INSERT INTO mapit_nametype (code, description) VALUES ('$CODE', '$DESCRIPTION');" | su -l -c ". /var/www/mapit/virtualenv-mapit/bin/activate; psql mapit" mapit
