@@ -21,10 +21,12 @@ RUN ls -la data/de_postal_codes.csv
 RUN chmod 755 data/de_postal_codes.csv
 RUN ls -la data/de_postal_codes.csv
 
+RUN sed '/,,,,,,,/d' data/de_postal_codes.csv
+
 ADD postalcodes.sh /postalcodes.sh
 RUN chmod +x /postalcodes.sh
 
-#RUN /postalcodes.sh de_postal_codes 1 7 6
+RUN /postalcodes.sh de_postal_codes 1 7 6
 
 # All following area id's should start at 10000
 #RUN service postgresql restart && sleep 20; echo "ALTER SEQUENCE mapit_area_id_seq RESTART WITH 10000;" | su -l -c ". /var/www/mapit/virtualenv-mapit/bin/activate &&  psql mapit" mapit
