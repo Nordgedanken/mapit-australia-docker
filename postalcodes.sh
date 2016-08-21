@@ -7,4 +7,4 @@ LAT=$4
 
 service postgresql restart && sleep 20
 
-su -l -c ". /var/www/mapit/virtualenv-mapit/bin/activate; /var/www/mapit/mapit/manage.py mapit_import_postal_codes --code-field $CODES --coord-field-lon $LONG --coord-field-lat $LAT /data/$FILE_NAME.csv" mapit
+su -l -c ". /var/www/mapit/virtualenv-mapit/bin/activate; /var/www/mapit/mapit/manage.py mapit_import_postal_codes --code-field $CODES --coord-field-lon $LONG --coord-field-lat $LAT --header-row /data/$FILE_NAME.csv" mapit
