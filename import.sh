@@ -15,4 +15,4 @@ echo "INSERT INTO mapit_type (code, description) VALUES ('$NAME_CODE', '$NAME_CO
 echo "unzip"
 cd /data; unzip $NAME.zip; rm $NAME.zip
 # TODO do proper projection conversion using -s_srs "EPSG:28350" -t_srs "EPSG:4326"
-su -l -c ". /var/www/mapit/virtualenv-mapit/bin/activate; /var/www/mapit/mapit/manage.py mapit_import --generation_id 1 --area_type_code $CODE --name_type_code $NAME_CODE --country_code DE --name_field $NAME_FIELD /data/$FILE_NAME.shp --commit" mapit
+su -l -c ". /var/www/mapit/virtualenv-mapit/bin/activate; /var/www/mapit/mapit/manage.py mapit_import --generation_id 1 --area_type_code $CODE --name_type_code $NAME_CODE --country_code DE --name_field $NAME_FIELD /data/$FILE_NAME.shp --encoding ISO-8859-1 --commit" mapit
