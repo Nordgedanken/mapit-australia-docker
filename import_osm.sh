@@ -8,8 +8,8 @@ FILE_NAME=$5
 CODE_FIELD=$6
 
 service postgresql restart && sleep 20
-echo "INSERT INTO mapit_type (code, description) VALUES ('$CODE', '$DESCRIPTION'); INSERT INTO mapit_nametype (code, description) VALUES ('$CODE', '$DESCRIPTION');" | su -l -c ". /var/www/mapit/virtualenv-mapit/bin/activate; psql mapit" mapit
-echo "INSERT INTO mapit_type (code, description) VALUES ('$NAME_CODE', '$NAME_CODE_DESC'); INSERT INTO mapit_nametype (code, description) VALUES ('$NAME_CODE', '$NAME_CODE_DESC');" | su -l -c ". /var/www/mapit/virtualenv-mapit/bin/activate; psql mapit" mapit
+#echo "INSERT INTO mapit_type (code, description) VALUES ('$CODE', '$DESCRIPTION'); INSERT INTO mapit_nametype (code, description) VALUES ('$CODE', '$DESCRIPTION');" | su -l -c ". /var/www/mapit/virtualenv-mapit/bin/activate; psql mapit" mapit
+#echo "INSERT INTO mapit_type (code, description) VALUES ('$NAME_CODE', '$NAME_CODE_DESC'); INSERT INTO mapit_nametype (code, description) VALUES ('$NAME_CODE', '$NAME_CODE_DESC');" | su -l -c ". /var/www/mapit/virtualenv-mapit/bin/activate; psql mapit" mapit
 
 echo "unzip"
 cd /data; unzip $NAME.zip; rm $NAME.zip
