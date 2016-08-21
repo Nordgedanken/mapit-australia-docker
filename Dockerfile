@@ -1,9 +1,8 @@
 FROM nordgedanken/mapit-docker
 MAINTAINER Marcel Radzio <info@nordgedanken.de>
 
-RUN python -c 'import sys; print(sys.version_info[:])'
-
 ADD http://biogeo.ucdavis.edu/data/gadm2.8/shp/DEU_adm_shp.zip data/DEU_adm_shp.zip
+ADD http://media.nordgedanken.de/OSM/Germany.shp data/Germany.shp
 ADD https://www.aggdata.com/download_sample.php?file=de_postal_codes.csv data/de_postal_codes.csv
 # The first way is great during development as the step will get cached.
 # The second way is great for building on Docker Hub
@@ -17,6 +16,9 @@ RUN service postgresql restart && sleep 20; su -l -c ". /var/www/mapit/virtualen
 
 ADD import.sh /import.sh
 RUN chmod +x /import.sh
+
+ADD import_osm.sh /import_osm.sh
+RUN chmod +x /import_osm.sh
 
 RUN ls -la data/de_postal_codes.csv
 RUN chmod 755 data/de_postal_codes.csv
@@ -35,6 +37,8 @@ RUN /import.sh DEU_adm_shp State 'Federal State' NAME_1 DEU_adm1 full 'English N
 RUN /import.sh DEU_adm_shp CTY 'County' NAME_2 DEU_adm2 full 'English Name'
 RUN /import.sh DEU_adm_shp MCP 'Municipality' NAME_3 DEU_adm3 full 'English Name'
 RUN /import.sh DEU_adm_shp TWN 'Town' NAME_4 DEU_adm4 full 'English Name'
+
+RUN /import_osm.sh Germany DE NAME_4 "NAME,C,84" "ADMIN_LEVE,C,2"
 
 RUN service postgresql restart && sleep 20; su -l -c ". /var/www/mapit/virtualenv-mapit/bin/activate && /var/www/mapit/mapit/manage.py mapit_generation_activate --commit" mapit
 
