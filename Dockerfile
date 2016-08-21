@@ -4,6 +4,7 @@ MAINTAINER Marcel Radzio <info@nordgedanken.de>
 RUN python -c 'import sys; print(sys.version_info[:])'
 
 ADD http://biogeo.ucdavis.edu/data/gadm2.8/shp/DEU_adm_shp.zip data/DEU_adm_shp.zip
+ADD https://www.aggdata.com/download_sample.php?file=de_postal_codes.csv data/de_postal_codes.csv
 # The first way is great during development as the step will get cached.
 # The second way is great for building on Docker Hub
 ENV PYTHONPATH=/usr/local/lib/python2.7/site-packages
@@ -16,8 +17,8 @@ RUN service postgresql restart && sleep 20; su -l -c ". /var/www/mapit/virtualen
 ADD import.sh /import.sh
 RUN chmod +x /import.sh
 
-ADD import2.sh /import2.sh
-RUN chmod +x /import2.sh
+ADD postalcodes.sh /postalcodes.sh
+RUN chmod +x /postalcodes.sh
 
 # All following area id's should start at 10000
 RUN service postgresql restart && sleep 20; echo "ALTER SEQUENCE mapit_area_id_seq RESTART WITH 10000;" | su -l -c ". /var/www/mapit/virtualenv-mapit/bin/activate &&  psql mapit" mapit
@@ -27,6 +28,8 @@ RUN /import.sh DEU_adm_shp LGA 'Local Government Area' NAME_1 DEU_adm1 full 'Eng
 RUN /import.sh DEU_adm_shp LGA 'Local Government Area' NAME_2 DEU_adm2 full 'English Name'
 RUN /import.sh DEU_adm_shp LGA 'Local Government Area' NAME_3 DEU_adm3 full 'English Name'
 RUN /import.sh DEU_adm_shp LGA 'Local Government Area' NAME_4 DEU_adm4 full 'English Name'
+
+RUN /postalcodes.sh German-Zip-Codes 1 7 6
 
 ADD copyright.html /var/www/mapit/mapit/mapit/templates/mapit/copyright.html
 ADD country.html /var/www/mapit/mapit/mapit/templates/mapit/country.html
