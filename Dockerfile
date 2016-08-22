@@ -3,7 +3,6 @@ MAINTAINER Marcel Radzio <info@nordgedanken.de>
 
 ADD http://biogeo.ucdavis.edu/data/gadm2.8/shp/DEU_adm_shp.zip data/DEU_adm_shp.zip
 ADD http://media.nordgedanken.de/OSM/Germany.GeoJson data/Germany.GeoJson
-ADD http://media.nordgedanken.de/OSM/de_postal_codes.csv data/de_postal_codes.csv
 ADD http://download.geonames.org/export/zip/DE.zip data/DE.zip
 RUN cd /data; unzip DE.zip; DE.zip; cd ..
 #RUN ls -la data
@@ -24,14 +23,11 @@ RUN chmod +x /import.sh
 ADD import_osm.sh /import_osm.sh
 RUN chmod +x /import_osm.sh
 
-RUN chmod 755 data/de_postal_codes.csv
 RUN chmod 755 data/DE.txt
 RUN chmod 755 data/Germany.GeoJson
 RUN chown -R mapit:mapit data
 #RUN ls -la data
 
-ADD postalcodes.sh /postalcodes.sh
-RUN chmod +x /postalcodes.sh
 ADD postalcodes2.sh /postalcodes2.sh
 RUN chmod +x /postalcodes2.sh
 
