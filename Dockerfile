@@ -39,7 +39,7 @@ RUN /import.sh DEU_adm_shp O06 'County' NAME_2 DEU_adm2 full 'English Name'
 RUN /import.sh DEU_adm_shp O07 'Municipality' NAME_3 DEU_adm3 full 'English Name'
 RUN /import.sh DEU_adm_shp O08 'Town' NAME_4 DEU_adm4 full 'English Name'
 
-#RUN /import_osm.sh Germany O07 "NAME,C,84" "ADMIN_LEVE,C,2"
+RUN /import_osm.sh Germany O07 "NAME,C,84" "ADMIN_LEVE,C,2"
 
 RUN service postgresql restart && sleep 20; su -l -c ". /var/www/mapit/virtualenv-mapit/bin/activate && /var/www/mapit/mapit/manage.py mapit_generation_activate --commit" mapit
 
