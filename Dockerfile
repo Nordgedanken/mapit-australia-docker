@@ -3,7 +3,7 @@ MAINTAINER Marcel Radzio <info@nordgedanken.de>
 
 ADD http://biogeo.ucdavis.edu/data/gadm2.8/shp/DEU_adm_shp.zip data/DEU_adm_shp.zip
 ADD http://media.nordgedanken.de/OSM/Germany.shp data/Germany.shp
-ADD https://www.aggdata.com/download_sample.php?file=de_postal_codes.csv data/de_postal_codes.csv
+ADD http://media.nordgedanken.de/OSM/de_postal_codes.csv data/de_postal_codes.csv
 ENV PYTHONPATH=/usr/local/lib/python2.7/site-packages
 
 RUN service postgresql restart && sleep 20; su -l -c ". /var/www/mapit/virtualenv-mapit/bin/activate && /var/www/mapit/mapit/manage.py loaddata global" mapit
@@ -21,7 +21,7 @@ RUN ls -la data/de_postal_codes.csv
 RUN chmod 755 data/de_postal_codes.csv
 RUN ls -la data/de_postal_codes.csv
 
-RUN sed '/,,,,,,,/d' data/de_postal_codes.csv > data/de_postal_codes.csv.tmp
+RUN sed 's/.$//' data/de_postal_codes.csv > data/de_postal_codes.csv.tmp
 RUN mv data/de_postal_codes.csv.tmp data/de_postal_codes.csv
 
 ADD postalcodes.sh /postalcodes.sh
