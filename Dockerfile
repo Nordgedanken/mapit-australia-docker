@@ -28,11 +28,10 @@ RUN chmod 755 data/Germany.GeoJson
 RUN chown -R mapit:mapit data
 #RUN ls -la data
 
-ADD postalcodes2.sh /postalcodes2.sh
-RUN chmod +x /postalcodes2.sh
+ADD postalcodes.sh /postalcodes.sh
+RUN chmod +x /postalcodes.sh
 
-RUN /postalcodes.sh de_postal_codes 1 7 6
-RUN /postalcodes2.sh DE 2 11 10
+RUN /postalcodes.sh DE 2 11 10
 
 # All following area id's should start at 10000
 #RUN service postgresql restart && sleep 20; echo "ALTER SEQUENCE mapit_area_id_seq RESTART WITH 10000;" | su -l -c ". /var/www/mapit/virtualenv-mapit/bin/activate &&  psql mapit" mapit
