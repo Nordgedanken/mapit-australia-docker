@@ -6,8 +6,8 @@ ADD http://media.nordgedanken.de/OSM/Germany.shp data/Germany.shp
 ADD http://media.nordgedanken.de/OSM/de_postal_codes.csv data/de_postal_codes.csv
 ADD http://download.geonames.org/export/zip/DE.zip data/DE.zip
 RUN cd /data; unzip DE.zip; DE.zip; cd ..
-RUN ls -la data
-RUN ls -la data/Germany.shp
+#RUN ls -la data
+#RUN ls -la data/Germany.shp
 ENV PYTHONPATH=/usr/local/lib/python2.7/site-packages
 
 #RUN service postgresql restart && sleep 20; echo "INSERT INTO mapit_country (code, name) VALUES ('DE', 'Germany');" | su -l -c ". /var/www/mapit/virtualenv-mapit/bin/activate && psql mapit" mapit
@@ -28,7 +28,7 @@ RUN chmod 755 data/de_postal_codes.csv
 RUN chmod 755 data/DE.txt
 RUN chmod 755 data/Germany.shp
 RUN chown -R mapit:mapit data
-RUN ls -la data
+#RUN ls -la data
 
 ADD postalcodes.sh /postalcodes.sh
 RUN chmod +x /postalcodes.sh
@@ -47,7 +47,7 @@ RUN /import.sh DEU_adm_shp O05 'County' NAME_2 DEU_adm2 full 'English Name'
 RUN /import.sh DEU_adm_shp O08 'Municipality' NAME_3 DEU_adm3 full 'English Name'
 RUN /import.sh DEU_adm_shp O08 'Town' NAME_4 DEU_adm4 full 'English Name'
 
-#RUN /import_osm.sh Germany O07 "NAME,C,84" "ADMIN_LEVE,C,2"
+RUN /import_osm.sh Germany O07 "NAME,C,84" "ADMIN_LEVE,C,2"
 
 RUN service postgresql restart && sleep 20; su -l -c ". /var/www/mapit/virtualenv-mapit/bin/activate && /var/www/mapit/mapit/manage.py mapit_generation_activate --commit" mapit
 
