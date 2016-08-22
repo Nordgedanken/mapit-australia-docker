@@ -35,8 +35,8 @@ RUN /postalcodes.sh de_postal_codes 1 7 6
 
 RUN /import.sh DEU_adm_shp O02 'Country' NAME_ENGLI DEU_adm0 full 'English Name'
 RUN /import.sh DEU_adm_shp O04 'Federal State' NAME_1 DEU_adm1 full 'English Name'
-RUN /import.sh DEU_adm_shp O06 'County' NAME_2 DEU_adm2 full 'English Name'
-RUN /import.sh DEU_adm_shp O07 'Municipality' NAME_3 DEU_adm3 full 'English Name'
+RUN /import.sh DEU_adm_shp O05 'County' NAME_2 DEU_adm2 full 'English Name'
+RUN /import.sh DEU_adm_shp O08 'Municipality' NAME_3 DEU_adm3 full 'English Name'
 RUN /import.sh DEU_adm_shp O08 'Town' NAME_4 DEU_adm4 full 'English Name'
 
 #RUN /import_osm.sh Germany O07 "NAME,C,84" "ADMIN_LEVE,C,2"
