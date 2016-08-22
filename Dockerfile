@@ -11,7 +11,7 @@ RUN service postgresql restart && sleep 20; su -l -c ". /var/www/mapit/virtualen
 #RUN service postgresql restart && sleep 20; su -l -c ". /var/www/mapit/virtualenv-mapit/bin/activate && /var/www/mapit/mapit/manage.py mapit_generation_activate --commit" mapit
 
 ADD fixture_de.json /var/www/mapit/mapit/fixtures/de.json
-ADD countries.py /var/www/mapit/mapit/countries.py
+ADD mapit_de/countries.py /var/www/mapit/mapit/countries.py
 RUN service postgresql restart && sleep 20; su -l -c ". /var/www/mapit/virtualenv-mapit/bin/activate && /var/www/mapit/mapit/manage.py loaddata /var/www/mapit/mapit/fixtures/de.json" mapit
 
 ADD import.sh /import.sh
