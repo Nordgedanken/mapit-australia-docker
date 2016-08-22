@@ -4,6 +4,8 @@ MAINTAINER Marcel Radzio <info@nordgedanken.de>
 ADD http://biogeo.ucdavis.edu/data/gadm2.8/shp/DEU_adm_shp.zip data/DEU_adm_shp.zip
 ADD http://media.nordgedanken.de/OSM/Germany.shp data/Germany.shp
 ADD http://media.nordgedanken.de/OSM/de_postal_codes.csv data/de_postal_codes.csv
+ADD http://download.geonames.org/export/zip/DE.zip data/DE.zip
+RUN cd /data; unzip DE.zip; DE.zip; cd ..
 RUN ls -la data
 RUN ls -la data/Germany.shp
 ENV PYTHONPATH=/usr/local/lib/python2.7/site-packages
@@ -23,12 +25,17 @@ ADD import_osm.sh /import_osm.sh
 RUN chmod +x /import_osm.sh
 
 RUN chmod 755 data/de_postal_codes.csv
+RUN chmod 755 data/DE.txt
 RUN chmod 755 data/Germany.shp
+RUN ls -la data
 
 ADD postalcodes.sh /postalcodes.sh
 RUN chmod +x /postalcodes.sh
+ADD postalcodes2.sh /postalcodes2.sh
+RUN chmod +x /postalcodes2.sh
 
 RUN /postalcodes.sh de_postal_codes 1 7 6
+RUN /postalcodes2.sh DE 2 11 10
 
 # All following area id's should start at 10000
 #RUN service postgresql restart && sleep 20; echo "ALTER SEQUENCE mapit_area_id_seq RESTART WITH 10000;" | su -l -c ". /var/www/mapit/virtualenv-mapit/bin/activate &&  psql mapit" mapit
