@@ -20,9 +20,8 @@ RUN chmod +x /import.sh
 ADD import_osm.sh /import_osm.sh
 RUN chmod +x /import_osm.sh
 
-RUN ls -la data/de_postal_codes.csv
 RUN chmod 755 data/de_postal_codes.csv
-RUN ls -la data/de_postal_codes.csv
+RUN chmod 755 data/Germany.shp
 
 ADD postalcodes.sh /postalcodes.sh
 RUN chmod +x /postalcodes.sh
