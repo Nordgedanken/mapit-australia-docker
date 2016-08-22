@@ -1,5 +1,6 @@
 ## Dockerized Mapit with German data pre-loaded
-### This is hopefully working
+
+[![](https://images.microbadger.com/badges/image/nordgedanken/mapit-germany-docker.svg)](http://microbadger.com/images/nordgedanken/mapit-germany-docker "Get your own image badge on microbadger.com") [![](https://images.microbadger.com/badges/version/nordgedanken/mapit-germany-docker.svg)](http://microbadger.com/images/nordgedanken/mapit-germany-docker "Get your own version badge on microbadger.com")
 
 ### How to run this
 
