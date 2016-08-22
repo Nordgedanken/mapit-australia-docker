@@ -32,7 +32,7 @@ RUN /postalcodes.sh de_postal_codes 1 6 7
 # All following area id's should start at 10000
 #RUN service postgresql restart && sleep 20; echo "ALTER SEQUENCE mapit_area_id_seq RESTART WITH 10000;" | su -l -c ". /var/www/mapit/virtualenv-mapit/bin/activate &&  psql mapit" mapit
 
-RUN /import.sh DEU_adm_shp CTR 'Local Government Area' NAME_ENGLI DEU_adm0 full 'English Name'
+RUN /import.sh DEU_adm_shp O02 'Country' NAME_ENGLI DEU_adm0 full 'English Name'
 RUN /import.sh DEU_adm_shp O04 'Federal State' NAME_1 DEU_adm1 full 'English Name'
 RUN /import.sh DEU_adm_shp O06 'County' NAME_2 DEU_adm2 full 'English Name'
 RUN /import.sh DEU_adm_shp O07 'Municipality' NAME_3 DEU_adm3 full 'English Name'
