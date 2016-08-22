@@ -4,6 +4,8 @@ MAINTAINER Marcel Radzio <info@nordgedanken.de>
 ADD http://biogeo.ucdavis.edu/data/gadm2.8/shp/DEU_adm_shp.zip data/DEU_adm_shp.zip
 ADD http://media.nordgedanken.de/OSM/Germany.shp data/Germany.shp
 ADD http://media.nordgedanken.de/OSM/de_postal_codes.csv data/de_postal_codes.csv
+RUN ls -la data
+RUN ls -la data/Germany.shp
 ENV PYTHONPATH=/usr/local/lib/python2.7/site-packages
 
 #RUN service postgresql restart && sleep 20; echo "INSERT INTO mapit_country (code, name) VALUES ('DE', 'Germany');" | su -l -c ". /var/www/mapit/virtualenv-mapit/bin/activate && psql mapit" mapit
