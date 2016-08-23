@@ -42,7 +42,7 @@ RUN /import.sh DEU_adm_shp O05 'County' NAME_2 DEU_adm2 full 'English Name'
 RUN /import.sh DEU_adm_shp O08 'Municipality' NAME_3 DEU_adm3 full 'English Name'
 RUN /import.sh DEU_adm_shp O08 'Town' NAME_4 DEU_adm4 full 'English Name'
 
-#RUN /import_osm.sh Germany O07 "NAME,C,84" "ADMIN_LEVE,C,2"
+RUN /import_osm.sh Germany O07 "NAME,C,84" "ADMIN_LEVE,C,2"
 
 RUN service postgresql restart && sleep 20; su -l -c ". /var/www/mapit/virtualenv-mapit/bin/activate && /var/www/mapit/mapit/manage.py mapit_generation_activate --commit" mapit
 
@@ -50,14 +50,3 @@ ADD copyright.html /var/www/mapit/mapit/mapit/templates/mapit/copyright.html
 ADD country.html /var/www/mapit/mapit/mapit/templates/mapit/country.html
 
 RUN rm -rf /data
-
-# TODO: Make mapit handle areas with numeric names
-# TODO: Look for more authoritive sources for state electoral boundaries
-# TODO: Look for more authoritive sources for state electoral LGAs
-# TODO: Include Aborginal Areas
-# TODO: Include Suburbs
-# TODO: Include Council Wards?
-# TODO: Update LGAs with 2013 data
-#
-# Victorian Council Ward & State Electoral Division Boundaries: https://www.vec.vic.gov.au/publications/publications-maps.html
-# South Australian LGAs: http://dpti.sa.gov.au/open_data_portal
