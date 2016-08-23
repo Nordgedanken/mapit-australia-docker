@@ -17,7 +17,7 @@ RUN service postgresql restart && sleep 20; su -l -c ". /var/www/mapit/virtualen
 #RUN service postgresql restart && sleep 20; su -l -c ". /var/www/mapit/virtualenv-mapit/bin/activate && /var/www/mapit/mapit/manage.py mapit_generation_activate --commit" mapit
 
 ADD fixture_de.json /var/www/mapit/mapit/fixtures/de.json
-ADD mapit_de/countries.py /var/www/mapit/mapit/countries.py
+ADD mapit_de/countries.py /var/www/mapit/mapit_gb/countries.py
 RUN service postgresql restart && sleep 20; su -l -c ". /var/www/mapit/virtualenv-mapit/bin/activate && /var/www/mapit/mapit/manage.py loaddata /var/www/mapit/mapit/fixtures/de.json" mapit
 
 ADD import.sh /import.sh
@@ -48,7 +48,7 @@ RUN /import.sh DEU_adm_shp O06 'County' NAME_2 DEU_adm2 full 'English Name'
 RUN /import.sh DEU_adm_shp O07 'Municipality' NAME_3 DEU_adm3 full 'English Name'
 RUN /import.sh DEU_adm_shp O08 'Town' NAME_4 DEU_adm4 full 'English Name'
 
-RUN /import_osm.sh Germany O02 "NAME" "ADMIN_LEVE"
+#RUN /import_osm.sh Germany O02 "NAME" "ADMIN_LEVE"
 
 RUN service postgresql restart && sleep 20; su -l -c ". /var/www/mapit/virtualenv-mapit/bin/activate && /var/www/mapit/mapit/manage.py mapit_generation_activate --commit" mapit
 
