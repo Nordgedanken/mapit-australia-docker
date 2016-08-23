@@ -27,7 +27,6 @@ ADD import_osm.sh /import_osm.sh
 RUN chmod +x /import_osm.sh
 
 RUN chmod 755 data/DE.txt
-RUN chmod 755 data/Germany.GeoJson
 RUN chown -R mapit:mapit data
 #RUN ls -la data
 
