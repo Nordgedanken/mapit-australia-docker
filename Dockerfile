@@ -27,8 +27,12 @@ ADD import_osm.sh /import_osm.sh
 RUN chmod +x /import_osm.sh
 
 RUN chmod 755 data/DE.txt
+RUN chmod 755 data/Germany.shp
+RUN chmod 755 data/Germany.shx
+RUN chmod 755 data/Germany.dbf
+RUN chmod 755 data/Germany.prj
 RUN chown -R mapit:mapit data
-#RUN ls -la data
+RUN ls -la data
 
 ADD postalcodes.sh /postalcodes.sh
 RUN chmod +x /postalcodes.sh
