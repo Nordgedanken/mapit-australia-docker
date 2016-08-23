@@ -16,9 +16,9 @@ if [ -f /data/$NAME.GeoJson ];
 then
    echo "File GeoJson exists."
    cd /data
-   su -l -c ". /var/www/mapit/virtualenv-mapit/bin/activate; /var/www/mapit/mapit/manage.py mapit_import --generation_id 1 --area_type_code O02 --name_type_code binfo --country_code DE --name_field $NAME_FIELD --code_field $CODE_FIELD --code_type osm_rel /data/$NAME.GeoJson --preserve --commit" mapit
+   su -l -c ". /var/www/mapit/virtualenv-mapit/bin/activate; /var/www/mapit/mapit/manage.py mapit_import --generation_id 1 --area_type_code O02 --name_type_code binfo --country_code DE --name_field $NAME_FIELD --code_field $CODE_FIELD --code_type osm_rel /data/$NAME.GeoJson --commit" mapit
 else
    echo "File Shapefile exists."
    cd /data
-   su -l -c ". /var/www/mapit/virtualenv-mapit/bin/activate; /var/www/mapit/mapit/manage.py mapit_import --generation_id 1 --area_type_code O02 --name_type_code binfo --country_code DE --name_field $NAME_FIELD --code_field $CODE_FIELD --code_type osm_rel /data/$NAME.shp --preserve --commit" mapit
+   su -l -c ". /var/www/mapit/virtualenv-mapit/bin/activate; /var/www/mapit/mapit/manage.py mapit_import --generation_id 1 --area_type_code O02 --name_type_code binfo --country_code DE --name_field $NAME_FIELD --code_field $CODE_FIELD --code_type osm_rel /data/$NAME.shp --commit" mapit
 fi
