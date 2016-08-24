@@ -16,7 +16,7 @@ ENV PYTHONPATH=/usr/local/lib/python2.7/site-packages
 RUN service postgresql restart && sleep 20; su -l -c ". /var/www/mapit/virtualenv-mapit/bin/activate && /var/www/mapit/mapit/manage.py mapit_generation_create --desc='Initial import' --commit" mapit
 #RUN service postgresql restart && sleep 20; su -l -c ". /var/www/mapit/virtualenv-mapit/bin/activate && /var/www/mapit/mapit/manage.py mapit_generation_activate --commit" mapit
 
-RUN service postgresql restart && sleep 20; su -l -c ". /var/www/mapit/virtualenv-mapit/bin/activate && /var/www/mapit/mapit/manage.py loaddata /var/www/mapit/mapit_de/fixtures/de.json" mapit
+RUN service postgresql restart && sleep 20; su -l -c ". /var/www/mapit/virtualenv-mapit/bin/activate && /var/www/mapit/mapit/manage.py loaddata /var/www/mapit/mapit/mapit_de/fixtures/de.json" mapit
 
 #ADD import.sh /import.sh
 #RUN chmod +x /import.sh
