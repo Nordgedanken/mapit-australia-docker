@@ -8,7 +8,7 @@
 # Description:       Starts and stops mapit docker
 ### END INIT INFO
 
-SCRIPT=docker run -p 8020:80 nordgedanken/mapit-germany-docker
+SCRIPT=docker run -p 8020:80 nordgedanken/mapit-germany-docker --name "mapit"
 RUNAS=daemon
 
 PIDFILE=/var/run/mapit.pid
@@ -33,7 +33,7 @@ stop() {
   fi
   echo 'Stopping service…' >&2
   rm -f "$PIDFILE"
-  docker stop $(docker ps -q --filter ancestor=nordgedanken/mapit-germany-docker )
+  docker stop -t 2 mapit
   echo 'Service stopped' >&2
 }
 
