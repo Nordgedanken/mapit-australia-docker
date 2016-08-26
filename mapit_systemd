@@ -2,8 +2,8 @@
 Description=Mapit Server
 
 [Service]
-ExecStart=docker run -p 8020:80 nordgedanken/mapit-germany-docker --name "mapit"
-ExecStop=docker stop -t 2 mapit
+ExecStart=$(which docker) run -p 8020:80 nordgedanken/mapit-germany-docker --name "mapit"
+ExecStop=$(which docker) stop -t 2 mapit
 User=daemon
 Group=docker
 
